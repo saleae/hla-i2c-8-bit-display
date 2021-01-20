@@ -1,13 +1,7 @@
+# I2C 8-bit Address Display
 
-  # I2C 8-bit Address Display
-  
-## Getting started
+This HLA is a simple utility for viewing 7 bit I2C addresses as the 8-bit value that appears on the bus. This is useful when debugging microcontroller firmware that does not natively support 7-bit I2C address.
 
-1. Build your extension by updating the Python files for your needs
-2. Create a public Github repo and push your code 
-3. Update this README
-4. Open the Logic app and publish your extension
-5. Create a Github release
-6. Debug your hardware like you've never done before :)
+Because the Saleae I2C decoder always displays and stores I2C addresses as a 7 bit number, this extension left shifts the address by 1 and sets the LSB for read transactions.
 
-  
+![screenshot](./screenshot.png)
