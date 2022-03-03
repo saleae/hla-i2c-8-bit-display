@@ -23,13 +23,21 @@ class Hla(HighLevelAnalyzer):
         if frame.type == 'address':
             direction = 'Read' if frame.data['read'] else 'Write'
             address = (frame.data['address'][0] << 1) | (1 if frame.data['read'] else 0)
-            ack = frame.data['ack']
+            message = ''
+            if 'ack' in frame.data:
+                message = 'ACK' if frame.data['ack'] else 'NAK'
+            elif 'error' in frame.data:
+                message = frame.data['error']
             return AnalyzerFrame('i2c-address', frame.start_time, frame.end_time, {
-                'description': 'Setup {} to [0x{:02X}] + {}'.format(direction, address, 'ACK' if ack else 'NAK')
+                'description': 'Setup {} to [0x{:02X}] + {}'.format(direction, address, message)
             })
         elif frame.type == 'data':
             data = frame.data['data'][0]
-            ack = frame.data['ack']
+            message = ''
+            if 'ack' in frame.data:
+                message = 'ACK' if frame.data['ack'] else 'NAK'
+            elif 'error' in frame.data:
+                message = frame.data['error']
             return AnalyzerFrame('i2c-data', frame.start_time, frame.end_time, {
-                'description': '0x{:02X} + {}'.format(data, 'ACK' if ack else 'NAK')
+                'description': '0x{:02X} + {}'.format(data, message)
             })
