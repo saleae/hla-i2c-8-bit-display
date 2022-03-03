@@ -2,7 +2,7 @@
   "name": "I2C 8-bit Address Display",
   "apiVersion": "1.0.0",
   "author": "Mark Garrison",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Converts I2C 7-Bit Addresses as 8 bit with R/W bit",
   "extensions": {
     "I2C 8-bit Address Display": {
